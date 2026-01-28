@@ -1,0 +1,115 @@
+<div class="dashboard-container">
+  <h1 class="mat-headline-4">{{ 'dashboard.title' | translate }}</h1>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>{{ 'dashboard.stats.totalResumes' | translate }}</mat-card-title>
+        <mat-icon mat-card-avatar>description</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.totalResumes }}</div>
+        <div class="stat-subtitle">{{ 'dashboard.stats.totalResumesSubtitle' | translate }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>{{ 'dashboard.stats.experience' | translate }}</mat-card-title>
+        <mat-icon mat-card-avatar>work</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.totalExperience }}</div>
+        <div class="stat-subtitle">{{ 'dashboard.stats.experienceSubtitle' | translate }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>{{ 'dashboard.stats.skills' | translate }}</mat-card-title>
+        <mat-icon mat-card-avatar>star</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.totalSkills }}</div>
+        <div class="stat-subtitle">{{ 'dashboard.stats.skillsSubtitle' | translate }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Recent Resumes -->
+  <div class="recent-section">
+    <div class="section-header">
+      <h2 class="mat-headline-5">{{ 'dashboard.recentResumes.title' | translate }}</h2>
+      <button mat-raised-button color="primary" (click)="onAddNewResume()">
+        <mat-icon>add</mat-icon>
+        {{ 'dashboard.recentResumes.addButton' | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="isLoading; else resumeList" class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>{{ 'dashboard.recentResumes.loading' | translate }}</p>
+    </div>
+
+    <ng-template #resumeList>
+      <div *ngIf="recentResumes.length > 0; else noResumes" class="resume-grid">
+        <mat-card *ngFor="let resume of recentResumes" class="resume-card">
+          <mat-card-header>
+            <div mat-card-avatar class="resume-avatar">
+              {{ resume.datiGenerali.nome.charAt(0) }}{{ resume.datiGenerali.cognome.charAt(0) }}
+            </div>
+            <mat-card-title>{{ resume.datiGenerali.nome }} {{ resume.datiGenerali.cognome }}</mat-card-title>
+            <mat-card-subtitle>{{ (resume.esperienzeLavorative[0] && resume.esperienzeLavorative[0].ruolo) || ('dashboard.recentResumes.noExperience' | translate) }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="resume-details">
+              <div class="detail">
+                <mat-icon>email</mat-icon>
+                <span>{{ resume.datiGenerali.email }}</span>
+              </div>
+              <div class="detail">
+                <mat-icon>phone</mat-icon>
+                <span>{{ resume.datiGenerali.telefono }}</span>
+              </div>
+              <div class="detail">
+                <mat-icon>location_on</mat-icon>
+                <span>{{ resume.datiGenerali.cittaResidenza }}, {{ resume.datiGenerali.paeseResidenza }}</span>
+              </div>
+            </div>
+            <div class="skills">
+              <mat-chip-set>
+                <mat-chip *ngFor="let skill of resume.competenzeTecnologiche?.slice(0, 3)">
+                  {{ skill.titolo }}
+                </mat-chip>
+                <mat-chip *ngIf="(resume.competenzeTecnologiche?.length || 0) > 3" color="primary" selected>
+                  +{{ (resume.competenzeTecnologiche.length || 0) - 3 }}
+                </mat-chip>
+              </mat-chip-set>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button color="primary" [routerLink]="['/resumes/edit', resume.id]">
+              <mat-icon>edit</mat-icon> {{ 'dashboard.resumeCard.editButton' | translate }}
+            </button>
+            <button mat-button [routerLink]="['/resumes', resume.id]">
+              <mat-icon>visibility</mat-icon> {{ 'dashboard.resumeCard.viewButton' | translate }}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <ng-template #noResumes>
+        <div class="no-resumes">
+          <mat-icon>folder_open</mat-icon>
+          <h3>{{ 'dashboard.noResumes.title' | translate }}</h3>
+          <p>{{ 'dashboard.noResumes.description' | translate }}</p>
+          <button mat-raised-button color="primary" (click)="onAddNewResume()">
+            <mat-icon>add</mat-icon>
+            {{ 'dashboard.actions.add' | translate }}
+          </button>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

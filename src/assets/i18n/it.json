@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Curriculum Management"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "stats": {
+      "totalResumes": "Curriculum Totali",
+      "totalResumesSubtitle": "Curriculum registrati",
+      "experience": "Esperienze",
+      "experienceSubtitle": "Esperienze lavorative",
+      "skills": "Competenze",
+      "skillsSubtitle": "Competenze totali"
+    },
+    "recentResumes": {
+      "title": "Ultimi Curriculum",
+      "addButton": "Nuovo Curriculum",
+      "loading": "Caricamento in corso...",
+      "noExperience": "Nessuna esperienza"
+    },
+    "resumeCard": {
+      "editButton": "Modifica",
+      "viewButton": "Visualizza"
+    },
+    "noResumes": {
+      "title": "Nessun curriculum trovato",
+      "description": "Crea il tuo primo curriculum per iniziare"
+    },
+    "actions": {
+      "add": "Aggiungi"
+    }
+  }
+}

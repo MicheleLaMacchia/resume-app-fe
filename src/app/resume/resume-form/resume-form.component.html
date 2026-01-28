@@ -1,0 +1,52 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Modifica Curriculum' : 'Nuovo Curriculum' }}</h2>
+  
+  <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()" class="resume-form">
+    <!-- Sezione Dati Generali -->
+    <mat-card class="form-section">
+      <mat-card-header>
+        <mat-card-title>Dati Generali</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" placeholder="Inserisci il nome">
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Cognome</mat-label>
+            <input matInput formControlName="cognome" placeholder="Inserisci il cognome">
+          </mat-form-field>
+        </div>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Inserisci l'email">
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono" placeholder="Inserisci il telefono">
+          </mat-form-field>
+        </div>
+        
+        <mat-form-field appearance="outline" class="form-field full-width">
+          <mat-label>Indirizzo</mat-label>
+          <textarea matInput formControlName="indirizzo" rows="2" placeholder="Inserisci l'indirizzo"></textarea>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+    
+    <!-- Pulsanti di azione -->
+    <div class="form-actions">
+      <button type="button" mat-stroked-button color="warn" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon> Annulla
+      </button>
+      <button type="submit" mat-raised-button color="primary">
+        <mat-icon>save</mat-icon> Salva
+      </button>
+    </div>
+  </form>
+</div>

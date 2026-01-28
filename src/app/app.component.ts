@@ -1,14 +1,26 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [RouterOutlet],
+  template: `
+    <!-- Main app content -->
+    <router-outlet></router-outlet>
+  `,
+  styles: [`
+    :host {
+      display: block;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+  `]
 })
 export class AppComponent {
-  title = 'resume-app';
+  // App initialization logic can go here
+  constructor() {
+    // Initialize any global app settings if needed
+  }
 }
