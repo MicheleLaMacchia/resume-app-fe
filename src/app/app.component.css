@@ -1,0 +1,22 @@
+.app-header {
+  background: var(--primary-color);
+  color: #fff;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+.app-header-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.app-title {
+  font-weight: 700;
+  font-size: 20px;
+}
+.app-main {
+  padding: 24px;
+  background: #f5f7fb;
+  min-height: calc(100vh - 64px);
+}
