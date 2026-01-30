@@ -11,7 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResumeListComponent } from './resume/resume-list/resume-list.component';
 import { ResumeFormComponent } from './resume/resume-form/resume-form.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { AuthGuard } from './auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptor } from './core/interceptors/api.interceptor';
 
 const routes: Routes = [];
 
@@ -31,7 +32,9 @@ const routes: Routes = [];
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

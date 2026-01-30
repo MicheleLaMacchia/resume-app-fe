@@ -126,10 +126,10 @@
             </div>
           </mat-card-content>
           <mat-card-actions align="end">
-            <button mat-button color="primary" [routerLink]="['/resumes/edit', resume.id]">
+            <button mat-button color="primary" [routerLink]="['/resumes/edit', resume.datiGenerali.codiceFiscale]">
               <mat-icon>edit</mat-icon> {{ 'dashboard.resumeCard.editButton' | translate }}
             </button>
-            <button mat-button [routerLink]="['/resumes', resume.id]">
+            <button mat-button [routerLink]="['/resumes', resume.datiGenerali.codiceFiscale]">
               <mat-icon>visibility</mat-icon> {{ 'dashboard.resumeCard.viewButton' | translate }}
             </button>
           </mat-card-actions>
