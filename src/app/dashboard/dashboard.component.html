@@ -1,38 +1,75 @@
 <div class="dashboard-container">
   <h1 class="mat-headline-4">{{ 'dashboard.title' | translate }}</h1>
 
-  <!-- Stats Cards -->
+  <!-- Stats Cards (7) -->
   <div class="stats-grid">
     <mat-card class="stat-card">
       <mat-card-header>
-        <mat-card-title>{{ 'dashboard.stats.totalResumes' | translate }}</mat-card-title>
-        <mat-icon mat-card-avatar>description</mat-icon>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="stat-value">{{ stats.totalResumes }}</div>
-        <div class="stat-subtitle">{{ 'dashboard.stats.totalResumesSubtitle' | translate }}</div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="stat-card">
-      <mat-card-header>
-        <mat-card-title>{{ 'dashboard.stats.experience' | translate }}</mat-card-title>
+        <mat-card-title>Esperienze lavorative</mat-card-title>
         <mat-icon mat-card-avatar>work</mat-icon>
       </mat-card-header>
       <mat-card-content>
-        <div class="stat-value">{{ stats.totalExperience }}</div>
-        <div class="stat-subtitle">{{ 'dashboard.stats.experienceSubtitle' | translate }}</div>
+        <div class="stat-value">{{ stats.esperienze }}</div>
       </mat-card-content>
     </mat-card>
 
     <mat-card class="stat-card">
       <mat-card-header>
-        <mat-card-title>{{ 'dashboard.stats.skills' | translate }}</mat-card-title>
-        <mat-icon mat-card-avatar>star</mat-icon>
+        <mat-card-title>Istruzione</mat-card-title>
+        <mat-icon mat-card-avatar>school</mat-icon>
       </mat-card-header>
       <mat-card-content>
-        <div class="stat-value">{{ stats.totalSkills }}</div>
-        <div class="stat-subtitle">{{ 'dashboard.stats.skillsSubtitle' | translate }}</div>
+        <div class="stat-value">{{ stats.istruzione }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Lingue</mat-card-title>
+        <mat-icon mat-card-avatar>language</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.lingue }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Competenze trasversali</mat-card-title>
+        <mat-icon mat-card-avatar>group</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.trasversali }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Competenze tecnologiche</mat-card-title>
+        <mat-icon mat-card-avatar>memory</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.tecnologiche }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Competenze organizzative</mat-card-title>
+        <mat-icon mat-card-avatar>widgets</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.organizzative }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Competenze funzionali</mat-card-title>
+        <mat-icon mat-card-avatar>assignment</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.funzionali }}</div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -103,11 +140,6 @@
         <div class="no-resumes">
           <mat-icon>folder_open</mat-icon>
           <h3>{{ 'dashboard.noResumes.title' | translate }}</h3>
-          <p>{{ 'dashboard.noResumes.description' | translate }}</p>
-          <button mat-raised-button color="primary" (click)="onAddNewResume()">
-            <mat-icon>add</mat-icon>
-            {{ 'dashboard.actions.add' | translate }}
-          </button>
         </div>
       </ng-template>
     </ng-template>

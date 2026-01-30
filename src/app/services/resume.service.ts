@@ -113,4 +113,45 @@ export class ResumeService {
       ]
     };
   }
+
+  // New: get resume list from API
+  getResumeList(): Observable<Resume[]> {
+    return this.http.get<Resume[]>(`${environment.apiUrl}/resume-list`);
+  }
+
+  // New: get working experiences for a given codice fiscale
+  getWorkingExperience(cf: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/working-experience/${cf}`);
+  }
+
+  // New: get soft skills for a given codice fiscale
+  getSoftSkills(cf: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/soft-skills/${cf}`);
+  }
+
+  // Education / training
+  getEducationTraining(cf: string): Observable<any[]> {
+    // use hyphenated path 'education-training'
+    return this.http.get<any[]>(`${environment.apiUrl}/education-training/${cf}`);
+  }
+
+  // Language skills
+  getLanguageSkills(cf: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/language-skills/${cf}`);
+  }
+
+  // Technical skills
+  getTechnicalSkills(cf: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/technical-skills/${cf}`);
+  }
+
+  // Organizational skills
+  getOrganizationalSkills(cf: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/organizational-skills/${cf}`);
+  }
+
+  // Functional skills
+  getFunctionalSkills(cf: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/functional-skills/${cf}`);
+  }
 }
