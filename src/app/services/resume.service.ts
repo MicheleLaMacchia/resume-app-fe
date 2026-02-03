@@ -12,27 +12,6 @@ export class ResumeService {
 
   constructor(private http: HttpClient) { }
 
-  // Get all resumes
-  getResumes(): Observable<Resume[]> {
-    return this.http.get<Resume[]>(`${this.apiUrl}/list`);
-  }
-
-  // Create a new resume
-  createResume(resume: Omit<Resume, 'id'>): Observable<Resume> {
-    return this.http.post<Resume>(this.apiUrl, resume);
-  }
-
-  // Update an existing resume
-  updateResume(id: string, resume: Partial<Resume>): Observable<Resume> {
-    return this.http.put<Resume>(`${this.apiUrl}/${id}`, resume);
-  }
-
-  // Delete a resume
-  deleteResume(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-
-  // Generate a sample resume for testing
   getSampleResume(): Resume {
     return {
       datiGenerali: {
@@ -110,42 +89,71 @@ export class ResumeService {
   }
 
   getResume(cf: string): Observable<Resume> {
-    return this.http.get<Resume>(`${environment.apiUrl}/${cf}`);
+    return this.http.get<Resume>(`${this.apiUrl}/${cf}`);
   }
 
   // New: get working experiences for a given codice fiscale
   getWorkingExperience(cf: string): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/working-experience/${cf}`);
+    return this.http.get<any[]>(`${this.apiUrl}/working-experience/${cf}`);
   }
 
   // New: get soft skills for a given codice fiscale
   getSoftSkills(cf: string): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/soft-skills/${cf}`);
+    return this.http.get<any[]>(`${this.apiUrl}/soft-skills/${cf}`);
   }
 
   // Education / training
   getEducationTraining(cf: string): Observable<any[]> {
     // use hyphenated path 'education-training'
-    return this.http.get<any[]>(`${environment.apiUrl}/education-training/${cf}`);
+    return this.http.get<any[]>(`${this.apiUrl}/education-training/${cf}`);
   }
 
   // Language skills
   getLanguageSkills(cf: string): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/language-skills/${cf}`);
+    return this.http.get<any[]>(`${this.apiUrl}/language-skills/${cf}`);
   }
 
   // Technical skills
   getTechnicalSkills(cf: string): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/technical-skills/${cf}`);
+    return this.http.get<any[]>(`${this.apiUrl}/technical-skills/${cf}`);
   }
 
   // Organizational skills
   getOrganizationalSkills(cf: string): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/organizational-skills/${cf}`);
+    return this.http.get<any[]>(`${this.apiUrl}/organizational-skills/${cf}`);
   }
 
   // Functional skills
   getFunctionalSkills(cf: string): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/functional-skills/${cf}`);
+    return this.http.get<any[]>(`${this.apiUrl}/functional-skills/${cf}`);
+  }
+
+  // Personal data endpoints (datiGenerali)
+  getPersonalData(cf: string) {
+    return this.http.get(`${this.apiUrl}/personal-data/${cf}`);
+  }
+
+  updatePersonalData(cf: string, payload: any) {
+    return this.http.put(`${this.apiUrl}/personal-data/${cf}`, payload);
+  }
+
+  // Update working experiences array
+  updateWorkingExperience(cf: string, payload: any[]) {
+    return this.http.put(`${this.apiUrl}/working-experience/${cf}`, payload);
+  }
+
+  // Update education/training array
+  updateEducationTraining(cf: string, payload: any[]) {
+    return this.http.put(`${this.apiUrl}/education-training/${cf}`, payload);
+  }
+
+  // Update language skills array
+  updateLanguageSkills(cf: string, payload: any[]) {
+    return this.http.put(`${this.apiUrl}/language-skills/${cf}`, payload);
+  }
+
+  // Update soft skills (competenze trasversali)
+  updateSoftSkills(cf: string, payload: any[]) {
+    return this.http.put(`${this.apiUrl}/soft-skills/${cf}`, payload);
   }
 }

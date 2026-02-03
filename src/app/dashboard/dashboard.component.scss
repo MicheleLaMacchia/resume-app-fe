@@ -12,6 +12,8 @@
   max-width: 1200px;
   margin: 0 auto 24px;
   box-sizing: border-box;
+  position: relative;
+  padding-bottom: 20px; /* room for the edit stripe */
 }
 
 .gen-grid {
@@ -83,6 +85,8 @@ h1 {
   text-align: center;
   padding: 16px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  padding-bottom: 28px; /* room for the edit stripe */
   
   &:hover {
     transform: translateY(-5px);
@@ -238,6 +242,47 @@ h1 {
       }
     }
   }
+
+}
+
+/* Edit button that spans the width of the card with 5px margin */
+.card-edit-btn {
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  height: 20px;
+  width: calc(100% - 20px);
+  padding: 0;
+  background-color: var(--green-btn);
+  border: none;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 5px;
+  z-index: 5;
+}
+
+/* Hover: darker green and slightly expand for visibility */
+.card-edit-btn:hover {
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  height: 20px;
+  width: calc(100% - 20px);
+  padding: 0;
+  background-color: var(--green-btn-dark);
+  border: none;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 5px;
+  z-index: 5;
 }
 
 /* Loading and Empty States */

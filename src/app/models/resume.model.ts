@@ -2,10 +2,10 @@ export interface Resume {
   datiGenerali: DatiGenerali;
   esperienzeLavorative: EsperienzaLavorativa[];
   istruzioneFormazione: IstruzioneFormazione[];
-  competenzeLinguistiche: CompetenzaLinguistico[];
+  competenzeLinguistiche: CompetenzaLinguistica[];
   competenzeTrasversali: CompetenzaTrasversale[];
-  competenzeTecnologiche: CompetenzaTecnologico[];
-  competenzeOrganizzative: CompetenzaOrganizzativo[];
+  competenzeTecnologiche: CompetenzaTecnologica[];
+  competenzeOrganizzative: CompetenzaOrganizzativa[];
   competenzeFunzionali: CompetenzaFunzionale[];
 }
 
@@ -46,7 +46,7 @@ export interface IstruzioneFormazione {
   descrizione: string;
 }
 
-export interface CompetenzaLinguistico {
+export interface CompetenzaLinguistica {
   lingua: string;
   livelloAscolto: string;
   livelloLettura: string;
@@ -59,12 +59,12 @@ export interface CompetenzaTrasversale {
   descrizione: string;
 }
 
-export interface CompetenzaTecnologico {
+export interface CompetenzaTecnologica {
   titolo: string;
   descrizione: string;
 }
 
-export interface CompetenzaOrganizzativo {
+export interface CompetenzaOrganizzativa {
   titolo: string;
   descrizione: string;
 }

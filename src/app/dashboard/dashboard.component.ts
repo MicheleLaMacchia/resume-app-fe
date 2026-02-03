@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ResumeService } from '../services/resume.service';
+import { Router } from '@angular/router';
 import { Resume } from '../models/resume.model';
 import { forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -45,11 +46,32 @@ export class DashboardComponent implements OnInit {
 
   private resumeService = inject(ResumeService);
   private snackBar = inject(MatSnackBar);
+  private router = inject(Router);
 
   constructor() {}
 
   ngOnInit(): void {
     this.loadDashboardData();
+  }
+
+  onEditPersonalData(): void {
+    this.router.navigate(['/personal-data']);
+  }
+
+  onEditWorkingExperience(): void {
+    this.router.navigate(['/working-experience']);
+  }
+
+  onEditEducation(): void {
+    this.router.navigate(['/education-training']);
+  }
+
+  onEditLanguages(): void {
+    this.router.navigate(['/language-skills']);
+  }
+
+  onEditSoftSkills(): void {
+    this.router.navigate(['/soft-skills']);
   }
 
   loadDashboardData(): void {

@@ -21,6 +21,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+      { path: 'personal-data', loadComponent: () => import('./personal-data/personal-data.component').then(m => m.PersonalDataComponent), data: { title: 'Dati Generali' } },
+      { path: 'working-experience', loadComponent: () => import('./working-experience/working-experience.component').then(m => m.WorkingExperienceComponent), data: { title: 'Esperienze Lavorative' } },
+      { path: 'education-training', loadComponent: () => import('./education-training/education-training.component').then(m => m.EducationTrainingComponent), data: { title: 'Istruzione e Formazione' } },
+      { path: 'language-skills', loadComponent: () => import('./language-skills/language-skills.component').then(m => m.LanguageSkillsComponent), data: { title: 'Lingue' } },
+      { path: 'soft-skills', loadComponent: () => import('./soft-skills/soft-skills.component').then(m => m.SoftSkillsComponent), data: { title: 'Competenze Trasversali' } },
       { path: 'resumes', component: ResumeListComponent, data: { title: 'Elenco Curriculum' } },
       { path: 'resumes/new', component: ResumeFormComponent, data: { title: 'Nuovo Curriculum' } },
       { path: 'resumes/edit/:id', component: ResumeFormComponent, data: { title: 'Modifica Curriculum' } },

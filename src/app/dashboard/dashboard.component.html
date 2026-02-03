@@ -3,6 +3,7 @@
 
   <!-- Full width General Data card -->
   <mat-card class="full-width-card">
+    <button class="card-edit-btn" (click)="onEditPersonalData()" aria-label="modifica dati generali">modifica</button>
     <mat-card-header>
       <mat-icon mat-card-avatar>person</mat-icon>
       <mat-card-title>Dati Generali</mat-card-title>
@@ -33,6 +34,7 @@
   <!-- Stats Cards (7) -->
   <div class="stats-grid">
     <mat-card class="stat-card">
+      <button class="card-edit-btn" (click)="onEditWorkingExperience()" aria-label="modifica esperienze lavorative">modifica</button>
       <mat-card-header>
         <mat-card-title>Esperienze lavorative</mat-card-title>
         <mat-icon mat-card-avatar>work</mat-icon>
@@ -43,6 +45,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
+      <button class="card-edit-btn" (click)="onEditEducation()" aria-label="modifica istruzione">modifica</button>
       <mat-card-header>
         <mat-card-title>Istruzione</mat-card-title>
         <mat-icon mat-card-avatar>school</mat-icon>
@@ -53,6 +56,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
+      <button class="card-edit-btn" (click)="onEditLanguages()" aria-label="modifica lingue">modifica</button>
       <mat-card-header>
         <mat-card-title>Lingue</mat-card-title>
         <mat-icon mat-card-avatar>language</mat-icon>
@@ -63,6 +67,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
+      <button class="card-edit-btn" (click)="onEditSoftSkills()" aria-label="modifica trasversali">modifica</button>
       <mat-card-header>
         <mat-card-title>Competenze trasversali</mat-card-title>
         <mat-icon mat-card-avatar>group</mat-icon>
@@ -73,6 +78,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
+      <button class="card-edit-btn">modifica</button>
       <mat-card-header>
         <mat-card-title>Competenze tecnologiche</mat-card-title>
         <mat-icon mat-card-avatar>memory</mat-icon>
@@ -83,6 +89,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
+      <button class="card-edit-btn">modifica</button>
       <mat-card-header>
         <mat-card-title>Competenze organizzative</mat-card-title>
         <mat-icon mat-card-avatar>widgets</mat-icon>
@@ -93,6 +100,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
+      <button class="card-edit-btn">modifica</button>
       <mat-card-header>
         <mat-card-title>Competenze funzionali</mat-card-title>
         <mat-icon mat-card-avatar>assignment</mat-icon>
@@ -121,6 +129,7 @@
     <ng-template #resumeList>
       <div *ngIf="resume; else noResumes" class="resume-grid">
         <mat-card *ngIf="resume as r" class="resume-card">
+          <button class="card-edit-btn">modifica</button>
           <mat-card-header>
             <div mat-card-avatar class="resume-avatar">
               {{ r.datiGenerali.nome.charAt(0) }}{{ r.datiGenerali.cognome.charAt(0) }}
