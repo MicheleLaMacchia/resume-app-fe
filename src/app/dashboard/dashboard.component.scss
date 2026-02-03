@@ -167,6 +167,17 @@ h1 {
       }
     }
   }
+
+  /* Style for the 'nuovo curriculum' button to use blu-button */
+  .section-header .nuovo-cv {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+  }
+
+  .section-header .nuovo-cv mat-icon {
+    color: #fff;
+  }
 }
 
 /* Resume Grid */

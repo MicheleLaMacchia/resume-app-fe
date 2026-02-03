@@ -42,18 +42,19 @@
               </div>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-stroked-button type="button" (click)="toggleEdit(i)">modifica</button>
-              <button mat-stroked-button type="button" color="warn" (click)="deleteItem(i)" [disabled]="items.length <= 1">elimina</button>
+              <button mat-stroked-button class="edit-btn" type="button" (click)="toggleEdit(i)">modifica</button>
+              <button mat-stroked-button class="delete-btn" type="button" (click)="deleteItem(i)" [disabled]="items.length <= 1">elimina</button>
             </mat-card-actions>
           </mat-card>
         </div>
 
-        <div class="actions">
-          <button mat-stroked-button type="button" (click)="addNew()">aggiungi</button>
-          <button mat-stroked-button type="button" (click)="onReset()">reset</button>
-          <button mat-raised-button color="primary" type="button" (click)="onSave()">salva</button>
-        </div>
       </div>
     </mat-card-content>
   </mat-card>
+
+  <div class="global-actions">
+    <button mat-stroked-button class="global-add" type="button" (click)="addNew()">aggiungi</button>
+    <button mat-stroked-button class="global-reset" type="button" (click)="onReset()">reset</button>
+    <button mat-raised-button class="global-save" type="button" (click)="onSave()">salva</button>
+  </div>
 </div>

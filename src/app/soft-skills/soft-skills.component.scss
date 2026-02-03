@@ -47,3 +47,93 @@ mat-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* Apply same header/banner and spacing as working-experience */
+.soft-container mat-card {
+  padding: 0;
+}
+
+.soft-container mat-card > mat-card-header,
+.soft-container mat-card > .mat-card-header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  margin: 0 0 12px 0;
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.soft-container mat-card > mat-card-header mat-card-title,
+.soft-container mat-card > .mat-card-header .mat-card-title {
+  color: #fff !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.soft-container mat-card > mat-card-content,
+.soft-container mat-card > .mat-card-content {
+  padding: 18px 20px 24px;
+}
+
+.soft-container {
+  --blu-button: var(--primary-color);
+  --red-button: var(--red-btn);
+}
+
+.item-card {
+  padding-bottom: 8px;
+}
+
+.item-card mat-card {
+  padding: 0;
+}
+
+.item-card mat-card > mat-card-content,
+.item-card mat-card > .mat-card-content {
+  padding: 16px 18px 8px;
+}
+
+.item-card mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 18px 16px;
+}
+
+.item-card mat-card-actions .edit-btn {
+  background: var(--blu-button);
+  color: #fff;
+  border: none;
+}
+
+.item-card mat-card-actions .delete-btn {
+  background: var(--red-button);
+  color: #fff;
+  border: none;
+}
+
+.global-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin: 16px 0 24px 0;
+}
+
+.global-actions .global-add {
+  background: var(--blu-button);
+  color: #fff;
+  border: none;
+}
+
+.global-actions .global-save {
+  background: var(--green-btn);
+  color: #fff;
+  border: none;
+}
+
+.global-actions .global-reset {
+  background: transparent;
+}
