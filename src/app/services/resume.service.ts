@@ -17,11 +17,6 @@ export class ResumeService {
     return this.http.get<Resume[]>(`${this.apiUrl}/list`);
   }
 
-  // Get a single resume by ID
-  getResumeById(id: string): Observable<Resume> {
-    return this.http.get<Resume>(`${this.apiUrl}/${id}`);
-  }
-
   // Create a new resume
   createResume(resume: Omit<Resume, 'id'>): Observable<Resume> {
     return this.http.post<Resume>(this.apiUrl, resume);
@@ -114,9 +109,8 @@ export class ResumeService {
     };
   }
 
-  // New: get resume list from API
-  getResumeList(): Observable<Resume[]> {
-    return this.http.get<Resume[]>(`${environment.apiUrl}/resume-list`);
+  getResume(cf: string): Observable<Resume> {
+    return this.http.get<Resume>(`${environment.apiUrl}/${cf}`);
   }
 
   // New: get working experiences for a given codice fiscale

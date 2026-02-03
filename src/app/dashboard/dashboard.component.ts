@@ -30,11 +30,10 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  recentResumes: Resume[] = [];
+  resume: Resume | null = null;
   isLoading = true;
 
   stats = {
-    totalResumes: 0,
     esperienze: 0,
     istruzione: 0,
     lingue: 0,
@@ -57,7 +56,7 @@ export class DashboardComponent implements OnInit {
     this.isLoading = true;
     const cf = sessionStorage.getItem('codiceFiscale') || '';
 
-    const resumes$ = this.resumeService.getResumeList().pipe(catchError(() => of([])));
+    const resume$ = cf ? this.resumeService.getResume(cf).pipe(catchError(() => of(null))) : of(null);
     const experiences$ = cf ? this.resumeService.getWorkingExperience(cf).pipe(catchError(() => of([]))) : of([]);
     const education$ = cf ? this.resumeService.getEducationTraining(cf).pipe(catchError(() => of([]))) : of([]);
     const languages$ = cf ? this.resumeService.getLanguageSkills(cf).pipe(catchError(() => of([]))) : of([]);
@@ -66,10 +65,9 @@ export class DashboardComponent implements OnInit {
     const organizzative$ = cf ? this.resumeService.getOrganizationalSkills(cf).pipe(catchError(() => of([]))) : of([]);
     const funzionali$ = cf ? this.resumeService.getFunctionalSkills(cf).pipe(catchError(() => of([]))) : of([]);
 
-    forkJoin([resumes$, experiences$, education$, languages$, trasversali$, tecnologiche$, organizzative$, funzionali$]).subscribe({
-      next: ([resumes, experiences, education, languages, trasversali, tecnologiche, organizzative, funzionali]) => {
-        this.recentResumes = Array.isArray(resumes) ? (resumes as Resume[]).slice(0,5) : [];
-        this.stats.totalResumes = Array.isArray(resumes) ? resumes.length : 0;
+    forkJoin([resume$, experiences$, education$, languages$, trasversali$, tecnologiche$, organizzative$, funzionali$]).subscribe({
+      next: ([resume, experiences, education, languages, trasversali, tecnologiche, organizzative, funzionali]) => {
+        this.resume = resume as Resume | null;
         this.stats.esperienze = Array.isArray(experiences) ? experiences.length : 0;
         this.stats.istruzione = Array.isArray(education) ? education.length : 0;
         this.stats.lingue = Array.isArray(languages) ? languages.length : 0;
@@ -77,6 +75,8 @@ export class DashboardComponent implements OnInit {
         this.stats.tecnologiche = Array.isArray(tecnologiche) ? tecnologiche.length : 0;
         this.stats.organizzative = Array.isArray(organizzative) ? organizzative.length : 0;
         this.stats.funzionali = Array.isArray(funzionali) ? funzionali.length : 0;
+        
+        this.calculateStats();
         this.isLoading = false;
       },
       error: () => {
@@ -87,28 +87,13 @@ export class DashboardComponent implements OnInit {
   }
 
   private calculateStats(): void {
-    this.stats.totalResumes = this.recentResumes.length;
-    this.stats.esperienze = this.recentResumes.reduce((acc, curr) => {
-      return acc + (curr.esperienzeLavorative?.length || 0);
-    }, 0);
-    this.stats.istruzione = this.recentResumes.reduce((acc, curr) => {
-      return acc + (curr.istruzioneFormazione?.length || 0);
-    }, 0);
-    this.stats.lingue = this.recentResumes.reduce((acc, curr) => {
-      return acc + (curr.competenzeLinguistiche?.length || 0);
-    }, 0);
-    this.stats.trasversali = this.recentResumes.reduce((acc, curr) => {
-      return acc + (curr.competenzeTrasversali?.length || 0);
-    }, 0);
-    this.stats.tecnologiche = this.recentResumes.reduce((acc, curr) => {
-      return acc + (curr.competenzeTecnologiche?.length || 0);
-    }, 0);
-    this.stats.organizzative = this.recentResumes.reduce((acc, curr) => {
-      return acc + (curr.competenzeOrganizzative?.length || 0);
-    }, 0);
-    this.stats.funzionali = this.recentResumes.reduce((acc, curr) => {
-      return acc + (curr.competenzeFunzionali?.length || 0);
-    }, 0);
+    this.stats.esperienze = this.resume?.esperienzeLavorative?.length || 0;
+    this.stats.istruzione = this.resume?.istruzioneFormazione?.length || 0;
+    this.stats.lingue = this.resume?.competenzeLinguistiche?.length || 0;
+    this.stats.trasversali = this.resume?.competenzeTrasversali?.length || 0;
+    this.stats.tecnologiche = this.resume?.competenzeTecnologiche?.length || 0;
+    this.stats.organizzative = this.resume?.competenzeOrganizzative?.length || 0;
+    this.stats.funzionali = this.resume?.competenzeFunzionali?.length || 0;
   }
 
   onAddNewResume(): void {

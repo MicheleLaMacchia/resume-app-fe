@@ -9,23 +9,23 @@
     </mat-card-header>
     <mat-card-content>
       <div class="gen-grid">
-        <div><strong>Codice Fiscale:</strong> {{ recentResumes[0]?.datiGenerali?.codiceFiscale || '-' }}</div>
-        <div><strong>Nome:</strong> {{ recentResumes[0]?.datiGenerali?.nome || '-' }}</div>
-        <div><strong>Cognome:</strong> {{ recentResumes[0]?.datiGenerali?.cognome || '-' }}</div>
-        <div><strong>Data di nascita:</strong> {{ recentResumes[0]?.datiGenerali?.dataDiNascita || '-' }}</div>
-        <div><strong>Luogo di nascita:</strong> {{ recentResumes[0]?.datiGenerali?.luogoDiNascita || '-' }}</div>
-        <div><strong>Paese di nascita:</strong> {{ recentResumes[0]?.datiGenerali?.paeseDiNascita || '-' }}</div>
-        <div><strong>Indirizzo residenza:</strong> {{ recentResumes[0]?.datiGenerali?.indirizzoResidenza || '-' }}</div>
-        <div><strong>CAP residenza:</strong> {{ recentResumes[0]?.datiGenerali?.capResidenza || '-' }}</div>
-        <div><strong>Città residenza:</strong> {{ recentResumes[0]?.datiGenerali?.cittaResidenza || '-' }}</div>
-        <div><strong>Paese residenza:</strong> {{ recentResumes[0]?.datiGenerali?.paeseResidenza || '-' }}</div>
-        <div><strong>Indirizzo domicilio:</strong> {{ recentResumes[0]?.datiGenerali?.indirizzoDomicilio || '-' }}</div>
-        <div><strong>CAP domicilio:</strong> {{ recentResumes[0]?.datiGenerali?.capDomicilio || '-' }}</div>
-        <div><strong>Città domicilio:</strong> {{ recentResumes[0]?.datiGenerali?.cittaDomicilio || '-' }}</div>
-        <div><strong>Paese domicilio:</strong> {{ recentResumes[0]?.datiGenerali?.paeseDomicilio || '-' }}</div>
-        <div><strong>Nazionalità:</strong> {{ recentResumes[0]?.datiGenerali?.nazionalita || '-' }}</div>
-        <div><strong>Telefono:</strong> {{ recentResumes[0]?.datiGenerali?.telefono || '-' }}</div>
-        <div><strong>Email:</strong> {{ recentResumes[0]?.datiGenerali?.email || '-' }}</div>
+        <div><strong>Codice Fiscale:</strong> {{ resume?.datiGenerali?.codiceFiscale || '-' }}</div>
+        <div><strong>Nome:</strong> {{ resume?.datiGenerali?.nome || '-' }}</div>
+        <div><strong>Cognome:</strong> {{ resume?.datiGenerali?.cognome || '-' }}</div>
+        <div><strong>Data di nascita:</strong> {{ resume?.datiGenerali?.dataDiNascita || '-' }}</div>
+        <div><strong>Luogo di nascita:</strong> {{ resume?.datiGenerali?.luogoDiNascita || '-' }}</div>
+        <div><strong>Paese di nascita:</strong> {{ resume?.datiGenerali?.paeseDiNascita || '-' }}</div>
+        <div><strong>Indirizzo residenza:</strong> {{ resume?.datiGenerali?.indirizzoResidenza || '-' }}</div>
+        <div><strong>CAP residenza:</strong> {{ resume?.datiGenerali?.capResidenza || '-' }}</div>
+        <div><strong>Città residenza:</strong> {{ resume?.datiGenerali?.cittaResidenza || '-' }}</div>
+        <div><strong>Paese residenza:</strong> {{ resume?.datiGenerali?.paeseResidenza || '-' }}</div>
+        <div><strong>Indirizzo domicilio:</strong> {{ resume?.datiGenerali?.indirizzoDomicilio || '-' }}</div>
+        <div><strong>CAP domicilio:</strong> {{ resume?.datiGenerali?.capDomicilio || '-' }}</div>
+        <div><strong>Città domicilio:</strong> {{ resume?.datiGenerali?.cittaDomicilio || '-' }}</div>
+        <div><strong>Paese domicilio:</strong> {{ resume?.datiGenerali?.paeseDomicilio || '-' }}</div>
+        <div><strong>Nazionalità:</strong> {{ resume?.datiGenerali?.nazionalita || '-' }}</div>
+        <div><strong>Telefono:</strong> {{ resume?.datiGenerali?.telefono || '-' }}</div>
+        <div><strong>Email:</strong> {{ resume?.datiGenerali?.email || '-' }}</div>
       </div>
     </mat-card-content>
   </mat-card>
@@ -106,59 +106,59 @@
   <!-- Recent Resumes -->
   <div class="recent-section">
     <div class="section-header">
-      <h2 class="mat-headline-5">{{ 'dashboard.recentResumes.title' | translate }}</h2>
+      <h2 class="mat-headline-5">{{ 'dashboard.resume.title' | translate }}</h2>
       <button mat-raised-button color="primary" (click)="onAddNewResume()">
         <mat-icon>add</mat-icon>
-        {{ 'dashboard.recentResumes.addButton' | translate }}
+        {{ 'dashboard.resume.addButton' | translate }}
       </button>
     </div>
 
     <div *ngIf="isLoading; else resumeList" class="loading-container">
       <mat-spinner diameter="40"></mat-spinner>
-      <p>{{ 'dashboard.recentResumes.loading' | translate }}</p>
+      <p>{{ 'dashboard.resume.loading' | translate }}</p>
     </div>
 
     <ng-template #resumeList>
-      <div *ngIf="recentResumes.length > 0; else noResumes" class="resume-grid">
-        <mat-card *ngFor="let resume of recentResumes" class="resume-card">
+      <div *ngIf="resume; else noResumes" class="resume-grid">
+        <mat-card *ngIf="resume as r" class="resume-card">
           <mat-card-header>
             <div mat-card-avatar class="resume-avatar">
-              {{ resume.datiGenerali.nome.charAt(0) }}{{ resume.datiGenerali.cognome.charAt(0) }}
+              {{ r.datiGenerali.nome.charAt(0) }}{{ r.datiGenerali.cognome.charAt(0) }}
             </div>
-            <mat-card-title>{{ resume.datiGenerali.nome }} {{ resume.datiGenerali.cognome }}</mat-card-title>
-            <mat-card-subtitle>{{ (resume.esperienzeLavorative[0] && resume.esperienzeLavorative[0].ruolo) || ('dashboard.recentResumes.noExperience' | translate) }}</mat-card-subtitle>
+            <mat-card-title>{{ r.datiGenerali.nome }} {{ r.datiGenerali.cognome }}</mat-card-title>
+            <mat-card-subtitle>{{ (r.esperienzeLavorative[0].ruolo) || ('dashboard.resume.noExperience' | translate) }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <div class="resume-details">
               <div class="detail">
                 <mat-icon>email</mat-icon>
-                <span>{{ resume.datiGenerali.email }}</span>
+                <span>{{ r.datiGenerali.email }}</span>
               </div>
               <div class="detail">
                 <mat-icon>phone</mat-icon>
-                <span>{{ resume.datiGenerali.telefono }}</span>
+                <span>{{ r.datiGenerali.telefono }}</span>
               </div>
               <div class="detail">
                 <mat-icon>location_on</mat-icon>
-                <span>{{ resume.datiGenerali.cittaResidenza }}, {{ resume.datiGenerali.paeseResidenza }}</span>
+                <span>{{ r.datiGenerali.cittaResidenza }}, {{ r.datiGenerali.paeseResidenza }}</span>
               </div>
             </div>
             <div class="skills">
               <mat-chip-set>
-                <mat-chip *ngFor="let skill of resume.competenzeTecnologiche?.slice(0, 3)">
+                <mat-chip *ngFor="let skill of r.competenzeTecnologiche.slice(0, 3)">
                   {{ skill.titolo }}
                 </mat-chip>
-                <mat-chip *ngIf="(resume.competenzeTecnologiche?.length || 0) > 3" color="primary" selected>
-                  +{{ (resume.competenzeTecnologiche.length || 0) - 3 }}
+                <mat-chip *ngIf="(r.competenzeTecnologiche.length || 0) > 3" color="primary" selected>
+                  +{{ (r.competenzeTecnologiche.length || 0) - 3 }}
                 </mat-chip>
               </mat-chip-set>
             </div>
           </mat-card-content>
           <mat-card-actions align="end">
-            <button mat-button color="primary" [routerLink]="['/resumes/edit', resume.datiGenerali.codiceFiscale]">
+            <button mat-button color="primary" [routerLink]="['/resumes/edit', r.datiGenerali.codiceFiscale]">
               <mat-icon>edit</mat-icon> {{ 'dashboard.resumeCard.editButton' | translate }}
             </button>
-            <button mat-button [routerLink]="['/resumes', resume.datiGenerali.codiceFiscale]">
+            <button mat-button [routerLink]="['/resumes', r.datiGenerali.codiceFiscale]">
               <mat-icon>visibility</mat-icon> {{ 'dashboard.resumeCard.viewButton' | translate }}
             </button>
           </mat-card-actions>

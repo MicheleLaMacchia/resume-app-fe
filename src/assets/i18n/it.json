@@ -12,7 +12,7 @@
       "skills": "Competenze",
       "skillsSubtitle": "Competenze totali"
     },
-    "recentResumes": {
+    "resume": {
       "title": "Ultimi Curriculum",
       "addButton": "Nuovo Curriculum",
       "loading": "Caricamento in corso...",
