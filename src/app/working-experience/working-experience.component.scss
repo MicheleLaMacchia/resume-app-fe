@@ -6,6 +6,36 @@
   max-width: 1000px;
 }
 
+/* Style header to match Dati Generali */
+.working-container mat-card {
+  padding: 0;
+}
+
+.working-container mat-card > mat-card-header,
+.working-container mat-card > .mat-card-header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  margin: 0 0 12px 0;
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.working-container mat-card > mat-card-header mat-card-title,
+.working-container mat-card > .mat-card-header .mat-card-title {
+  color: #fff !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.working-container mat-card > mat-card-content,
+.working-container mat-card > .mat-card-content {
+  padding: 18px 20px 24px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: 1fr;
@@ -14,6 +44,55 @@
 
 .exp-card {
   position: relative;
+}
+
+/* color variables and spacing tweaks for exp-card actions */
+.working-container {
+  --blu-button: var(--primary-color);
+  --red-button: var(--red-btn);
+}
+
+/* reduce the big bottom padding on individual exp cards so actions are closer to inputs */
+.exp-card {
+  padding-bottom: 8px;
+}
+
+/* style the mat-card inside each exp-card to move padding into content and keep header tight */
+.exp-card mat-card {
+  padding: 0;
+}
+
+.exp-card mat-card > mat-card-content,
+.exp-card mat-card > .mat-card-content {
+  padding: 16px 18px 8px;
+}
+
+/* position action buttons to the right and tighten spacing */
+.exp-card mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 18px 16px;
+}
+
+.exp-card mat-card-actions .edit-btn {
+  background: var(--blu-button);
+  color: #fff;
+  border: none;
+}
+
+.exp-card mat-card-actions .edit-btn:hover {
+  filter: brightness(0.95);
+}
+
+.exp-card mat-card-actions .delete-btn {
+  background: var(--red-button);
+  color: #fff;
+  border: none;
+}
+
+.exp-card mat-card-actions .delete-btn[disabled] {
+  opacity: 0.6;
 }
 
 .grid {
@@ -26,15 +105,28 @@
   grid-column: 1 / -1;
 }
 
-.actions {
+/* global actions placed outside the experiences card */
+.global-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 16px;
-  position: absolute;
-  right: 16px;
-  bottom: 32px; /* lift actions higher */
-  z-index: 50;
+  margin: 16px 0 24px 0;
+}
+
+.global-actions .global-add {
+  background: var(--blu-button);
+  color: #fff;
+  border: none;
+}
+
+.global-actions .global-save {
+  background: var(--green-btn);
+  color: #fff;
+  border: none;
+}
+
+.global-actions .global-reset {
+  background: transparent;
 }
 
 /* ensure the outer mat-card has room for the absolute actions */

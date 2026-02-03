@@ -7,5 +7,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	--primary-color: #3b5bd6;
 	--blu-icon: #3f51b5;
 	--green-btn: #4caf50;
+	--red-btn: #e53935;
 	--green-btn-dark: #388e3c; /* darker green for hover */
 }
