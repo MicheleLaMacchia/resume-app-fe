@@ -4,16 +4,17 @@
   </button>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Dati Generali</mat-card-title>
+      <mat-card-title class="dg-title">Dati Generali</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
       <form #form="ngForm" (ngSubmit)="onSave(form)">
         <div class="grid">
-          <mat-form-field appearance="outline">
-            <mat-label>Codice Fiscale</mat-label>
-            <input matInput name="codiceFiscale" [(ngModel)]="formModel.codiceFiscale" required />
-          </mat-form-field>
+          <!-- Anagrafica separator -->
+          <div class="section-separator">
+            <span class="section-title">Anagrafica</span>
+            <hr class="section-line" />
+          </div>
 
           <mat-form-field appearance="outline">
             <mat-label>Nome</mat-label>
@@ -26,13 +27,13 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Data di nascita</mat-label>
-            <input matInput name="dataDiNascita" [(ngModel)]="formModel.dataDiNascita" />
+            <mat-label>Codice Fiscale</mat-label>
+            <input matInput name="codiceFiscale" [(ngModel)]="formModel.codiceFiscale" required />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Luogo di nascita</mat-label>
-            <input matInput name="luogoDiNascita" [(ngModel)]="formModel.luogoDiNascita" />
+            <mat-label>Nazionalità</mat-label>
+            <input matInput name="nazionalita" [(ngModel)]="formModel.nazionalita" />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -41,8 +42,39 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
+            <mat-label>Luogo di nascita</mat-label>
+            <input matInput name="luogoDiNascita" [(ngModel)]="formModel.luogoDiNascita" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data di nascita</mat-label>
+            <input matInput name="dataDiNascita" [(ngModel)]="formModel.dataDiNascita" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input matInput name="telefono" [(ngModel)]="formModel.telefono" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" [(ngModel)]="formModel.email" />
+          </mat-form-field>
+
+          <!-- Residenza section separator -->
+          <div class="section-separator">
+            <span class="section-title">Residenza</span>
+            <hr class="section-line" />
+          </div>
+
+          <mat-form-field appearance="outline">
             <mat-label>Indirizzo residenza</mat-label>
             <input matInput name="indirizzoResidenza" [(ngModel)]="formModel.indirizzoResidenza" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CAP residenza</mat-label>
+            <input matInput name="capResidenza" [(ngModel)]="formModel.capResidenza" />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -51,19 +83,39 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Telefono</mat-label>
-            <input matInput name="telefono" [(ngModel)]="formModel.telefono" />
+            <mat-label>Paese residenza</mat-label>
+            <input matInput name="paeseResidenza" [(ngModel)]="formModel.paeseResidenza" />
+          </mat-form-field>
+          <!-- Domicilio section separator -->
+          <div class="section-separator">
+            <span class="section-title">Domicilio</span>
+            <hr class="section-line" />
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Indirizzo domicilio</mat-label>
+            <input matInput name="indirizzoDomicilio" [(ngModel)]="formModel.indirizzoDomicilio" />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput name="email" [(ngModel)]="formModel.email" />
+            <mat-label>CAP domicilio</mat-label>
+            <input matInput name="capDomicilio" [(ngModel)]="formModel.capDomicilio" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Città domicilio</mat-label>
+            <input matInput name="cittaDomicilio" [(ngModel)]="formModel.cittaDomicilio" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Paese domicilio</mat-label>
+            <input matInput name="paeseDomicilio" [(ngModel)]="formModel.paeseDomicilio" />
           </mat-form-field>
         </div>
 
         <div class="actions">
           <button mat-stroked-button type="button" (click)="onReset(form)">reset</button>
-          <button mat-raised-button color="primary" type="submit">modifica</button>
+          <button mat-raised-button class="save-btn" type="submit">salva modifiche</button>
         </div>
       </form>
     </mat-card-content>

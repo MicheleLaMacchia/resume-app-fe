@@ -9,23 +9,31 @@
     </mat-card-header>
     <mat-card-content>
       <div class="gen-grid">
-        <div><strong>Codice Fiscale:</strong> {{ resume?.datiGenerali?.codiceFiscale || '-' }}</div>
         <div><strong>Nome:</strong> {{ resume?.datiGenerali?.nome || '-' }}</div>
         <div><strong>Cognome:</strong> {{ resume?.datiGenerali?.cognome || '-' }}</div>
-        <div><strong>Data di nascita:</strong> {{ resume?.datiGenerali?.dataDiNascita || '-' }}</div>
-        <div><strong>Luogo di nascita:</strong> {{ resume?.datiGenerali?.luogoDiNascita || '-' }}</div>
+
+        <div><strong>Codice Fiscale:</strong> {{ resume?.datiGenerali?.codiceFiscale || '-' }}</div>
+        <div><strong>Nazionalità:</strong> {{ resume?.datiGenerali?.nazionalita || '-' }}</div>
+
         <div><strong>Paese di nascita:</strong> {{ resume?.datiGenerali?.paeseDiNascita || '-' }}</div>
+        <div><strong>Luogo di nascita:</strong> {{ resume?.datiGenerali?.luogoDiNascita || '-' }}</div>
+
+        <div><strong>Data di nascita:</strong> {{ resume?.datiGenerali?.dataDiNascita || '-' }}</div>
+        <div><strong>Telefono:</strong> {{ resume?.datiGenerali?.telefono || '-' }}</div>
+
+        <div style="grid-column: 1 / -1"><strong>Email:</strong> {{ resume?.datiGenerali?.email || 'michele@gmail.com' }}</div>
+
         <div><strong>Indirizzo residenza:</strong> {{ resume?.datiGenerali?.indirizzoResidenza || '-' }}</div>
         <div><strong>CAP residenza:</strong> {{ resume?.datiGenerali?.capResidenza || '-' }}</div>
+
         <div><strong>Città residenza:</strong> {{ resume?.datiGenerali?.cittaResidenza || '-' }}</div>
-        <div><strong>Paese residenza:</strong> {{ resume?.datiGenerali?.paeseResidenza || '-' }}</div>
+        <div><strong>Paese residenza:</strong> {{ resume?.datiGenerali?.paeseResidenza || 'Italia' }}</div>
+
         <div><strong>Indirizzo domicilio:</strong> {{ resume?.datiGenerali?.indirizzoDomicilio || '-' }}</div>
         <div><strong>CAP domicilio:</strong> {{ resume?.datiGenerali?.capDomicilio || '-' }}</div>
+
         <div><strong>Città domicilio:</strong> {{ resume?.datiGenerali?.cittaDomicilio || '-' }}</div>
         <div><strong>Paese domicilio:</strong> {{ resume?.datiGenerali?.paeseDomicilio || '-' }}</div>
-        <div><strong>Nazionalità:</strong> {{ resume?.datiGenerali?.nazionalita || '-' }}</div>
-        <div><strong>Telefono:</strong> {{ resume?.datiGenerali?.telefono || '-' }}</div>
-        <div><strong>Email:</strong> {{ resume?.datiGenerali?.email || '-' }}</div>
       </div>
     </mat-card-content>
   </mat-card>
