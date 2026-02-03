@@ -156,4 +156,19 @@ export class ResumeService {
   updateSoftSkills(cf: string, payload: any[]) {
     return this.http.put(`${this.apiUrl}/soft-skills/${cf}`, payload);
   }
+
+  // Update technical skills (competenze tecnologiche)
+  updateTechnicalSkills(cf: string, payload: any[]) {
+    return this.http.put(`${this.apiUrl}/technical-skills/${cf}`, payload);
+  }
+
+  // Update organizational skills (competenze organizzative)
+  updateOrganizationalSkills(cf: string, payload: any[]) {
+    return this.http.put(`${this.apiUrl}/organizational-skills/${cf}`, payload);
+  }
+
+  // Update functional skills (competenze funzionali)
+  updateFunctionalSkills(cf: string, payload: any[]) {
+    return this.http.put(`${this.apiUrl}/functional-skills/${cf}`, payload);
+  }
 }

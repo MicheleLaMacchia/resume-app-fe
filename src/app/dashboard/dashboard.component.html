@@ -78,7 +78,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
-      <button class="card-edit-btn">modifica</button>
+      <button class="card-edit-btn" (click)="onEditTechnicalSkills()" aria-label="modifica tecnologiche">modifica</button>
       <mat-card-header>
         <mat-card-title>Competenze tecnologiche</mat-card-title>
         <mat-icon mat-card-avatar>memory</mat-icon>
@@ -89,7 +89,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
-      <button class="card-edit-btn">modifica</button>
+      <button class="card-edit-btn" (click)="onEditOrganizational()">modifica</button>
       <mat-card-header>
         <mat-card-title>Competenze organizzative</mat-card-title>
         <mat-icon mat-card-avatar>widgets</mat-icon>
@@ -100,7 +100,7 @@
     </mat-card>
 
     <mat-card class="stat-card">
-      <button class="card-edit-btn">modifica</button>
+      <button class="card-edit-btn" (click)="onEditFunctionalSkills()">modifica</button>
       <mat-card-header>
         <mat-card-title>Competenze funzionali</mat-card-title>
         <mat-icon mat-card-avatar>assignment</mat-icon>

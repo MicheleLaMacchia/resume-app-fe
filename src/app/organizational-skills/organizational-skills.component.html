@@ -1,0 +1,45 @@
+<div class="organizational-container">
+  <mat-card>
+    <mat-card-header>
+      <button mat-icon-button class="back-btn" (click)="onBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <mat-card-title>Competenze organizzative</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="isLoading">Caricamento...</div>
+      <div *ngIf="!isLoading">
+        <div class="cards">
+          <mat-card *ngFor="let it of items; let i = index" class="item-card">
+            <mat-card-header>
+              <mat-card-title>Elemento {{ i + 1 }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Titolo</mat-label>
+                  <input matInput name="titolo-{{i}}" [(ngModel)]="it.titolo" [disabled]="!editing[i]" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full">
+                  <mat-label>Descrizione</mat-label>
+                  <textarea matInput name="descrizione-{{i}}" [(ngModel)]="it.descrizione" [disabled]="!editing[i]"></textarea>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button type="button" (click)="toggleEdit(i)">modifica</button>
+              <button mat-stroked-button type="button" color="warn" (click)="deleteItem(i)" [disabled]="items.length <= 1">elimina</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+        <div class="actions">
+          <button mat-stroked-button type="button" (click)="addNew()">aggiungi</button>
+          <button mat-stroked-button type="button" (click)="onReset()">reset</button>
+          <button mat-raised-button color="primary" type="button" (click)="onSave()">salva</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

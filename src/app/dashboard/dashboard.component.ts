@@ -74,6 +74,18 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/soft-skills']);
   }
 
+  onEditFunctionalSkills(): void {
+    this.router.navigate(['/functional-skills']);
+  }
+
+  onEditTechnicalSkills(): void {
+    this.router.navigate(['/technical-skills']);
+  }
+
+  onEditOrganizational(): void {
+    this.router.navigate(['/organizational-skills']);
+  }
+
   loadDashboardData(): void {
     this.isLoading = true;
     const cf = sessionStorage.getItem('codiceFiscale') || '';
