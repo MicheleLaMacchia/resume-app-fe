@@ -55,7 +55,7 @@ import { RouterModule } from '@angular/router';
     
     .card-header h1 {
       margin: 0 0 20px 0;
-      color: #3f51b5;
+      color: var(--blu-icon);
       font-size: 24px;
     }
     
@@ -82,7 +82,7 @@ import { RouterModule } from '@angular/router';
     }
     
     h2 {
-      color: #3f51b5;
+      color: var(--blu-icon);
       margin: 10px 0;
       font-size: 22px;
     }
@@ -98,7 +98,7 @@ import { RouterModule } from '@angular/router';
       align-items: center;
       justify-content: center;
       padding: 10px 20px;
-      background-color: #3f51b5;
+      background-color: var(--blu-icon);
       color: white;
       text-decoration: none;
       border-radius: 4px;
