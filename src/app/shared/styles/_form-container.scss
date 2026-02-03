@@ -1,0 +1,26 @@
+// Form container base styles for consistent spacing across components
+.form-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 24px 100px; // Added bottom padding
+  min-height: calc(100vh - 64px); // Full viewport height minus header
+  box-sizing: border-box;
+  position: relative;
+
+  // For cards that need bottom spacing
+  .card-container {
+    margin-bottom: 24px;
+  }
+
+  // Ensure buttons at bottom have enough space
+  .action-buttons {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 16px 16px 80px;
+  }
+}

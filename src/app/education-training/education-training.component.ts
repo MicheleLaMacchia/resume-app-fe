@@ -15,7 +15,19 @@ import { IstruzioneFormazione } from '../models/resume.model';
 @Component({
   selector: 'app-education-training',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatDialogModule],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    MatCardModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatButtonModule, 
+    MatIconModule, 
+    MatSnackBarModule, 
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   templateUrl: './education-training.component.html',
   styleUrls: ['./education-training.component.scss']
 })

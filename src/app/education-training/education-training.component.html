@@ -28,16 +28,20 @@
 
                 <mat-form-field appearance="outline">
                   <mat-label>Data inizio</mat-label>
-                  <input matInput name="dataInizio-{{i}}" [(ngModel)]="it.dataInizio" [disabled]="!editing[i]" />
+                  <input matInput [matDatepicker]="startPicker" name="dataInizio-{{i}}" [(ngModel)]="it.dataInizio" [disabled]="!editing[i]" />
+                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #startPicker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                   <mat-label>Data fine</mat-label>
-                  <input matInput name="dataFine-{{i}}" [(ngModel)]="it.dataFine" [disabled]="!editing[i]" />
+                  <input matInput [matDatepicker]="endPicker" name="dataFine-{{i}}" [(ngModel)]="it.dataFine" [disabled]="!editing[i]" />
+                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #endPicker></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full">
                   <mat-label>Descrizione</mat-label>
-                  <textarea matInput name="descr-{{i}}" [(ngModel)]="it.descrizione" [disabled]="!editing[i]"></textarea>
+                  <textarea matInput name="descr-{{i}}" [(ngModel)]="it.descrizione" [disabled]="!editing[i]" rows="3"></textarea>
                 </mat-form-field>
               </div>
             </mat-card-content>

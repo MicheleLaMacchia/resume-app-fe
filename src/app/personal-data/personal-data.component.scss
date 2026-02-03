@@ -1,7 +1,10 @@
+@import 'src/app/shared/styles/back-button';
+@import 'src/app/shared/styles/form-container';
+
 .personal-data-container {
+  @extend .form-container;
   max-width: 900px;
-  margin: 24px auto;
-  padding: 0 24px;
+  padding: 0 24px 100px;
 }
 
 .back-btn {

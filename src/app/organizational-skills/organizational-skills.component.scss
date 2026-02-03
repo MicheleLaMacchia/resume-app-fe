@@ -1,6 +1,8 @@
 @import 'src/app/shared/styles/back-button';
+@import 'src/app/shared/styles/form-container';
 
 .organizational-container {
+  @extend .form-container;
   max-width: 1000px;
 }
 
