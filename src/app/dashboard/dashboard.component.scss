@@ -17,6 +17,12 @@
   box-sizing: border-box;
   position: relative;
   padding-bottom: 20px; /* room for the edit stripe */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .gen-grid {
