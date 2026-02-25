@@ -359,3 +359,67 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+/* Versions stacked: full-width stacked cards */
+.stacked-versions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.version-card.full-width {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px; /* reduced to half of previous */
+  padding: 6px 12px;
+}
+
+.version-row-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.version-row-content.compact { gap: 12px; }
+
+.version-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.version-date {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.version-id {
+  font-size: 0.75rem;
+  color: var(--text-secondary-color);
+}
+
+.version-actions button {
+  margin-left: 8px;
+  min-height: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border: none;
+  color: var(--white-color) !important;
+}
+
+/* Visualizza: blue background */
+.version-actions button:first-child {
+  background: var(--primary-color) !important;
+  color: var(--white-color) !important;
+}
+
+/* Elimina: red background */
+.version-actions button:last-child {
+  background: var(--red-btn) !important;
+  color: var(--white-color) !important;
+}
+
+.version-actions button:hover {
+  filter: brightness(0.95);
+}
+
+

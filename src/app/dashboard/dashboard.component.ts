@@ -7,6 +7,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { GenerateCvModalComponent } from './generate-cv-modal.component';
 import { ResumeService } from '../services/resume.service';
 import { Router } from '@angular/router';
 import { Resume } from '../models/resume.model';
@@ -25,7 +27,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,MatIconModule,
     MatChipsModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
@@ -33,6 +36,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class DashboardComponent implements OnInit {
   resume: Resume | null = null;
   isLoading = true;
+  resumeVersions: string[] = [];
+  sortedVersions: string[] = [];
 
   stats = {
     esperienze: 0,
@@ -47,6 +52,7 @@ export class DashboardComponent implements OnInit {
   private resumeService = inject(ResumeService);
   private snackBar = inject(MatSnackBar);
   private router = inject(Router);
+  private dialog = inject(MatDialog);
 
   constructor() {}
 
@@ -100,6 +106,15 @@ export class DashboardComponent implements OnInit {
       next: (resume) => {
         this.resume = resume as Resume | null;
         this.calculateStats();
+        // fetch versions for this codice fiscale
+        this.resumeService.getResumeVersions(cf).pipe(catchError(() => of([]))).subscribe({
+          next: (versions) => {
+            this.resumeVersions = versions || [];
+            // sort versions in descending order by timestamp when possible
+            this.sortedVersions = [...this.resumeVersions].sort((a,b) => this.parseSkToMillis(b) - this.parseSkToMillis(a));
+          },
+          error: () => { this.resumeVersions = []; this.sortedVersions = []; }
+        });
         this.isLoading = false;
       },
       error: () => {
@@ -119,10 +134,48 @@ export class DashboardComponent implements OnInit {
     this.stats.funzionali = this.resume?.competenzeFunzionali?.length || 0;
   }
 
-  onAddNewResume(): void {
-    // Will be implemented later
-    this.snackBar.open('Funzionalità di aggiunta curriculum in sviluppo', 'OK', {
-      duration: 3000
-    });
+  onGenerateCv(): void {
+    // Open modal to select template and download CV
+    this.dialog.open(GenerateCvModalComponent, { width: '480px' });
+  }
+
+  formatVersionLabel(sk: string): string {
+    if (!sk) return sk || '';
+    const millis = this.parseSkToMillis(sk);
+    if (millis > 0) {
+      const date = new Date(millis);
+      return this.pad(date.getDate()) + '/' + this.pad(date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + this.pad(date.getHours()) + ':' + this.pad(date.getMinutes());
+    }
+    // fall back to raw string
+    return sk;
+  }
+
+  private pad(n: number): string { return n < 10 ? '0' + n : '' + n; }
+
+  private parseSkToMillis(sk: string): number {
+    if (!sk) return 0;
+    const n = Number(sk);
+    if (!Number.isNaN(n) && n > 0) {
+      // assume epoch seconds
+      return n * 1000;
+    }
+    const d = Date.parse(sk);
+    if (!Number.isNaN(d)) return d;
+    return 0;
+  }
+
+  downloadVersion(sk: string): void {
+    this.snackBar.open('Download versione - funzione in sviluppo', 'OK', { duration: 3000 });
+  }
+
+  viewVersion(sk: string): void {
+    this.snackBar.open('Visualizza versione - funzione in sviluppo', 'OK', { duration: 3000 });
+  }
+
+  deleteVersion(sk: string): void {
+    // Placeholder: remove locally and show snackbar; backend delete not implemented
+    this.sortedVersions = this.sortedVersions.filter(x => x !== sk);
+    this.resumeVersions = this.resumeVersions.filter(x => x !== sk);
+    this.snackBar.open('Versione ' + sk + ' rimossa localmente (solo UI)', 'OK', { duration: 3000 });
   }
 }

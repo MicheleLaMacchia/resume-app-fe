@@ -93,6 +93,11 @@ export class ResumeService {
     return this.http.get<Resume>(`${this.apiUrl}/${cf}/latest`);
   }
 
+  // Get list of SK/version identifiers for a given codice fiscale
+  getResumeVersions(cf: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/${cf}/versions`);
+  }
+
   // New: get working experiences for a given codice fiscale
   getWorkingExperience(cf: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/working-experience/${cf}`);

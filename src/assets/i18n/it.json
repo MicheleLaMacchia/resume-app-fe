@@ -14,7 +14,7 @@
     },
     "resume": {
       "title": "Ultimi Curriculum",
-      "addButton": "Nuovo Curriculum",
+      "addButton": "Genera curriculum",
       "loading": "Caricamento in corso...",
       "noExperience": "Nessuna esperienza"
     },

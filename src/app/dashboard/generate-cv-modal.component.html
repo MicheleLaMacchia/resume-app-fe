@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Genera curriculum</h2>
+<mat-dialog-content>
+  <div *ngIf="templates.length === 0">Nessun template disponibile</div>
+  <mat-form-field appearance="fill" style="width:100%">
+    <mat-label>Template</mat-label>
+    <mat-select [(value)]="selectedTemplate">
+      <mat-option *ngFor="let t of templates" [value]="t">{{t}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Annulla</button>
+  <button mat-raised-button color="primary" (click)="download()" [disabled]="!selectedTemplate || loading">
+    <span *ngIf="!loading">Scarica CV</span>
+    <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+  </button>
+</mat-dialog-actions>

@@ -115,7 +115,7 @@
   <div class="recent-section">
     <div class="section-header">
       <h2 class="mat-headline-5">{{ 'dashboard.resume.title' | translate }}</h2>
-      <button mat-raised-button class="nuovo-cv" (click)="onAddNewResume()">
+      <button mat-raised-button class="nuovo-cv" (click)="onGenerateCv()">
         <mat-icon>add</mat-icon>
         {{ 'dashboard.resume.addButton' | translate }}
       </button>
@@ -127,50 +127,23 @@
     </div>
 
     <ng-template #resumeList>
-      <div *ngIf="resume; else noResumes" class="resume-grid">
-        <mat-card *ngIf="resume as r" class="resume-card" [routerLink]="['/resumes/edit', r.datiGenerali.codiceFiscale]">
-          <mat-card-header>
-            <div mat-card-avatar class="resume-avatar">
-              {{ r.datiGenerali.nome.charAt(0) }}{{ r.datiGenerali.cognome.charAt(0) }}
-            </div>
-            <mat-card-title>{{ r.datiGenerali.nome }} {{ r.datiGenerali.cognome }}</mat-card-title>
-            <mat-card-subtitle>{{ (r.esperienzeLavorative[0].ruolo) || ('dashboard.resume.noExperience' | translate) }}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="resume-details">
-              <div class="detail">
-                <mat-icon>email</mat-icon>
-                <span>{{ r.datiGenerali.email }}</span>
+      <div *ngIf="(sortedVersions?.length || 0) > 0; else noResumes">
+        <div class="stacked-versions">
+          <mat-card *ngFor="let v of sortedVersions" class="version-card full-width" role="article">
+            <mat-card-content>
+              <div class="version-row-content compact">
+                <div class="version-info">
+                  <div class="version-date">{{ formatVersionLabel(v) }}</div>
+                  <div class="version-id">ID: {{ v }}</div>
+                </div>
+                <div class="version-actions">
+                  <button mat-button color="primary" (click)="$event.stopPropagation(); viewVersion(v)">Visualizza</button>
+                  <button mat-button color="warn" (click)="$event.stopPropagation(); deleteVersion(v)">Elimina</button>
+                </div>
               </div>
-              <div class="detail">
-                <mat-icon>phone</mat-icon>
-                <span>{{ r.datiGenerali.telefono }}</span>
-              </div>
-              <div class="detail">
-                <mat-icon>location_on</mat-icon>
-                <span>{{ r.datiGenerali.cittaResidenza }}, {{ r.datiGenerali.paeseResidenza }}</span>
-              </div>
-            </div>
-            <div class="skills">
-              <mat-chip-set>
-                <mat-chip *ngFor="let skill of r.competenzeTecnologiche.slice(0, 3)">
-                  {{ skill.titolo }}
-                </mat-chip>
-                <mat-chip *ngIf="(r.competenzeTecnologiche.length || 0) > 3" color="primary" selected>
-                  +{{ (r.competenzeTecnologiche.length || 0) - 3 }}
-                </mat-chip>
-              </mat-chip-set>
-            </div>
-          </mat-card-content>
-          <mat-card-actions align="end">
-            <button mat-button color="primary" [routerLink]="['/resumes/edit', r.datiGenerali.codiceFiscale]" (click)="$event.stopPropagation()">
-              <mat-icon>edit</mat-icon> {{ 'dashboard.resumeCard.editButton' | translate }}
-            </button>
-            <button mat-button [routerLink]="['/resumes', r.datiGenerali.codiceFiscale]" (click)="$event.stopPropagation()">
-              <mat-icon>visibility</mat-icon> {{ 'dashboard.resumeCard.viewButton' | translate }}
-            </button>
-          </mat-card-actions>
-        </mat-card>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
 
       <ng-template #noResumes>
