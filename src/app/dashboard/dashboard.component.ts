@@ -10,7 +10,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ResumeService } from '../services/resume.service';
 import { Router } from '@angular/router';
 import { Resume } from '../models/resume.model';
-import { forkJoin, of } from 'rxjs';
+import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -90,26 +90,15 @@ export class DashboardComponent implements OnInit {
     this.isLoading = true;
     const cf = sessionStorage.getItem('codiceFiscale') || '';
 
-    const resume$ = cf ? this.resumeService.getResume(cf).pipe(catchError(() => of(null))) : of(null);
-    const experiences$ = cf ? this.resumeService.getWorkingExperience(cf).pipe(catchError(() => of([]))) : of([]);
-    const education$ = cf ? this.resumeService.getEducationTraining(cf).pipe(catchError(() => of([]))) : of([]);
-    const languages$ = cf ? this.resumeService.getLanguageSkills(cf).pipe(catchError(() => of([]))) : of([]);
-    const trasversali$ = cf ? this.resumeService.getSoftSkills(cf).pipe(catchError(() => of([]))) : of([]);
-    const tecnologiche$ = cf ? this.resumeService.getTechnicalSkills(cf).pipe(catchError(() => of([]))) : of([]);
-    const organizzative$ = cf ? this.resumeService.getOrganizationalSkills(cf).pipe(catchError(() => of([]))) : of([]);
-    const funzionali$ = cf ? this.resumeService.getFunctionalSkills(cf).pipe(catchError(() => of([]))) : of([]);
+    if (!cf) {
+      this.resume = null;
+      this.isLoading = false;
+      return;
+    }
 
-    forkJoin([resume$, experiences$, education$, languages$, trasversali$, tecnologiche$, organizzative$, funzionali$]).subscribe({
-      next: ([resume, experiences, education, languages, trasversali, tecnologiche, organizzative, funzionali]) => {
+    this.resumeService.getResume(cf).pipe(catchError(() => of(null))).subscribe({
+      next: (resume) => {
         this.resume = resume as Resume | null;
-        this.stats.esperienze = Array.isArray(experiences) ? experiences.length : 0;
-        this.stats.istruzione = Array.isArray(education) ? education.length : 0;
-        this.stats.lingue = Array.isArray(languages) ? languages.length : 0;
-        this.stats.trasversali = Array.isArray(trasversali) ? trasversali.length : 0;
-        this.stats.tecnologiche = Array.isArray(tecnologiche) ? tecnologiche.length : 0;
-        this.stats.organizzative = Array.isArray(organizzative) ? organizzative.length : 0;
-        this.stats.funzionali = Array.isArray(funzionali) ? funzionali.length : 0;
-        
         this.calculateStats();
         this.isLoading = false;
       },

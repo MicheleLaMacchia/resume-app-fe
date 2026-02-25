@@ -89,7 +89,8 @@ export class ResumeService {
   }
 
   getResume(cf: string): Observable<Resume> {
-    return this.http.get<Resume>(`${this.apiUrl}/${cf}`);
+    // Explicitly request the latest version for the given codice fiscale
+    return this.http.get<Resume>(`${this.apiUrl}/${cf}/latest`);
   }
 
   // New: get working experiences for a given codice fiscale
