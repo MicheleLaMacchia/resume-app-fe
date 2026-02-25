@@ -138,38 +138,39 @@ export class ResumeService {
     return this.http.put(`${this.apiUrl}/personal-data/${cf}`, payload);
   }
 
-  // Update working experiences array
-  updateWorkingExperience(cf: string, payload: any[]) {
-    return this.http.put(`${this.apiUrl}/working-experience/${cf}`, payload);
+  // Update working experiences array (returns saved Resume)
+  updateWorkingExperience(cf: string, payload: any[]): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/working-experience/${cf}`, payload);
   }
 
-  // Update education/training array
-  updateEducationTraining(cf: string, payload: any[]) {
-    return this.http.put(`${this.apiUrl}/education-training/${cf}`, payload);
+  // Update education/training array (returns saved Resume)
+  updateEducationTraining(cf: string, payload: any[]): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/education-training/${cf}`, payload);
   }
 
-  // Update language skills array
-  updateLanguageSkills(cf: string, payload: any[]) {
-    return this.http.put(`${this.apiUrl}/language-skills/${cf}`, payload);
+  // Update language skills array (returns saved Resume)
+  updateLanguageSkills(cf: string, payload: any[]): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/language-skills/${cf}`, payload);
   }
 
-  // Update soft skills (competenze trasversali)
-  updateSoftSkills(cf: string, payload: any[]) {
-    return this.http.put(`${this.apiUrl}/soft-skills/${cf}`, payload);
+  // Update soft skills (competenze trasversali) (returns saved Resume)
+  updateSoftSkills(cf: string, payload: any[]): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/soft-skills/${cf}`, payload);
   }
 
-  // Update technical skills (competenze tecnologiche)
-  updateTechnicalSkills(cf: string, payload: any[]) {
-    return this.http.put(`${this.apiUrl}/technical-skills/${cf}`, payload);
+  // Update technical skills (competenze tecnologiche) (returns saved Resume)
+  updateTechnicalSkills(cf: string, payload: any[]): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/technical-skills/${cf}`, payload);
   }
 
-  // Update organizational skills (competenze organizzative)
-  updateOrganizationalSkills(cf: string, payload: any[]) {
-    return this.http.put(`${this.apiUrl}/organizational-skills/${cf}`, payload);
+  // Update organizational skills (competenze organizzative) (returns saved Resume)
+  updateOrganizationalSkills(cf: string, payload: any[]): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/organizational-skills/${cf}`, payload);
   }
 
-  // Update functional skills (competenze funzionali)
-  updateFunctionalSkills(cf: string, payload: any[]) {
-    return this.http.put(`${this.apiUrl}/functional-skills/${cf}`, payload);
+  // Update functional skills (competenze funzionali) (returns saved Resume)
+  updateFunctionalSkills(cf: string, payload: any[]): Observable<Resume> {
+    return this.http.put<Resume>(`${this.apiUrl}/functional-skills/${cf}`, payload);
   }
 }
+

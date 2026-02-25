@@ -87,7 +87,9 @@ export class WorkingExperienceComponent implements OnInit {
   onSave(): void {
     if (!this.cf) return;
     this.resumeService.updateWorkingExperience(this.cf, this.working).subscribe({
-      next: () => {
+      next: (saved: any) => {
+        const savedResume = saved as any;
+        this.working = Array.isArray(savedResume?.esperienzeLavorative) ? savedResume.esperienzeLavorative : this.working;
         this.snackBar.open('Esperienze salvate', 'OK', { duration: 3000 });
         this.originalWorking = JSON.parse(JSON.stringify(this.working));
         this.editing = this.working.map(() => false);

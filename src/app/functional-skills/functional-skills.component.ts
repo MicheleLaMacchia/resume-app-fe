@@ -80,8 +80,9 @@ export class FunctionalSkillsComponent implements OnInit {
   onSave(): void {
     if (!this.cf) return;
     this.resumeService.updateFunctionalSkills(this.cf, this.items).subscribe({
-      next: () => {
+      next: (saved: any) => {
         this.snackBar.open('Competenze funzionali salvate', 'OK', { duration: 3000 });
+        this.items = Array.isArray(saved?.competenzeFunzionali) ? saved.competenzeFunzionali : [];
         this.originalItems = JSON.parse(JSON.stringify(this.items));
         this.editing = this.items.map(() => false);
       },

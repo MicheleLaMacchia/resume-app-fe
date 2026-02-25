@@ -80,8 +80,9 @@ export class TechnicalSkillsComponent implements OnInit {
   onSave(): void {
     if (!this.cf) return;
     this.resumeService.updateTechnicalSkills(this.cf, this.items).subscribe({
-      next: () => {
+      next: (saved: any) => {
         this.snackBar.open('Competenze tecnologiche salvate', 'OK', { duration: 3000 });
+        this.items = Array.isArray(saved?.competenzeTecnologiche) ? saved.competenzeTecnologiche : [];
         this.originalItems = JSON.parse(JSON.stringify(this.items));
         this.editing = this.items.map(() => false);
       },

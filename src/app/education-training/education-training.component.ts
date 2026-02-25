@@ -100,8 +100,9 @@ export class EducationTrainingComponent implements OnInit {
   onSave(): void {
     if (!this.cf) return;
     this.resumeService.updateEducationTraining(this.cf, this.items).subscribe({
-      next: () => {
+      next: (saved: any) => {
         this.snackBar.open('Istruzione salvata', 'OK', { duration: 3000 });
+        this.items = Array.isArray(saved?.istruzioneFormazione) ? saved.istruzioneFormazione : [];
         this.originalItems = JSON.parse(JSON.stringify(this.items));
         this.editing = this.items.map(() => false);
       },
